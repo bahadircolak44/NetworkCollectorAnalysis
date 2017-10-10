@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="dist/themes/default/style.css" />
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="loganalysis.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script src="dist/jstree.js"></script>	
+		<link rel="stylesheet" type="text/css" href="skins/jquery-ui-like/progressbar.css">
+	</head>
+	<body>
+
+	
+	<!------------------------------- Chart ------------------------------->
+		<div id="progressBar" class="jquery-ui-like"><div></div></div>
+		
+		<div>
+			
+					<canvas id="myChart" width="20" height="5" style="visibility: hidden"></canvas> 
+		</div> 
+
+
+	
+	<!------------------------------- Infected Hosts ------------------------------->
+
+		<div>
+			<div class="panel panel-default la-container-panel" style="height: auto">
+				<div class="panel-heading" >Infected Hosts</div>
+				<div class="panel-body flex-body" >
+					<div style="padding:2px;">
+						<table class="table table-hover table-fixed">
+							<thead>
+								<tr>
+									<th class="col-xs-3">Host Name</th>
+									<th class="col-xs-2">Host Ip</th>
+									<th class="col-xs-3">Malwares</th>
+									
+									<th class="col-xs-3">Size</th>
+									<th class="col-xs-2">Threat Level</th>
+									<tbody id="hostlist">
+									
+									</tbody>
+									
+								</tr>
+							</thead>
+							
+						</table>
+					</div>
+					<div class="flex-scroll">
+
+					</div>
+				</div>
+			</div>
+			
+	<!------------------------------- Logs ------------------------------->			
+			
+			<div class="panel panel-default la-container-panel" style="height: auto">
+				<div class="panel-heading" >Logs</div>
+				<div class="panel-body flex-body" >
+					<div style="padding:2px;">
+						<table class="table table-hover table-fixed">
+							<thead>
+								<tr>
+									<th class="col-xs-3">Logs Name</th>
+									<th class="col-xs-2"> Entity Type</th>
+
+								</tr>
+							</thead>
+							<tbody id="logslist">
+								<!-- // -->
+							</tbody>
+						</table>
+					</div>
+					<div class="flex-scroll">
+
+					</div>
+				</div>
+			</div>
+
+	<!------------------------------- Paths ------------------------------->
+			<table class="table table-hover table-fixed">
+				<thead>
+				<tr >
+				<!-----      Left-1    -------->
+					
+					
+				<!-----      Right-1    -------->	
+					<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading">Files Path </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">Entity</span></th>
+								</tr>
+						<tbody id="treelist2" style="color:black"></tbody>
+						</table>
+					</td>
+				<!-----      Right-2    -------->	
+					<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading"> Application Table </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">App Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Running Time</span></th>
+									<th class="col-xs-3"><span class="clickable_space">MaliciousActivity Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Operation</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Time</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Outgoing</span></th>
+								
+								
+								</tr>
+
+						<tbody id="applist" style="color:black"></tbody>
+						</table>
+                     <!-----      Right-2-down    -------->
+                        <table class="table table-hover table-fixed">
+                            <div class="panel panel-default la-container-panel" style="height: 65%">
+                                <div class="panel-heading"> Connected IPs </div>
+                            </div>
+                            <tr>
+                                
+                                <th class="col-xs-3"><span class="clickable_space">IPs</span></th>
+                                
+                            </tr>
+                            
+                            <tbody id="connected-ip-2" style="color:black"></tbody>
+                        </table>
+					</td>
+				</tr>
+				</thead>		
+			</table>
+			
+			
+			
+			<table class="table table-hover table-fixed">
+				<thead>
+				<tr >
+				<!-----      Left-1    -------->
+					<td class="col-xs-1" style=" ">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading">Entity Path </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3" style="float: auto"><span class="clickable_space">Entity</span></th>
+								</tr>
+						<tbody id="treelist"style="color:black"></tbody>
+						</table>
+					</td>
+					
+					
+				<!-----     Left-2    -------->	
+					<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading"> Application Table </div>
+							</div>
+								<tr>
+                                   
+									<th class="col-xs-3"><span class="clickable_space">App Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Running Time</span></th>
+									<th class="col-xs-3"><span class="clickable_space">MaliciousActivity Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Operation</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Time</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Outgoing</span></th>
+								</tr>
+
+						<tbody id="applist2" style="color:black"></tbody>
+						</table>
+                        
+                <!-----     Left-2-down    -------->
+                
+                        <table class="table table-hover table-fixed">
+                            <div class="panel panel-default la-container-panel" style="height: 65%">
+                                <div class="panel-heading"> Connected IPs </div>
+                            </div>
+                            <tr>
+                                
+                                <th class="col-xs-3"><span class="clickable_space">IPs</span></th>
+                                
+                            </tr>
+                            
+                            <tbody id="connected-ip" style="color:black"></tbody>
+                        </table>
+					</td>
+					
+
+				</tr>
+				</thead>		
+			</table>
+		</div>
+
+<!-----------------------------------------------------------------Java Script----------------------------------------------------------------------------------------->				
+
+
+
+<!---------------- JQuery------------------------->
+		
+<script type="text/javascript">
+		$(document).ready(function(){
+		var _host_list_sel = "#hostlist";
+		var _tree_list_sel = "#treelist";
+		var _tree_list_sel_2 = "#treelist2";
+		var _log_list_sel  = "#logslist";
+		var _chart_list_sel= "#chartlist";
+		var _log_app_sel  = "#applist";
+		var _log_app_sel_2  = "#applist2";
+        var _log_ip_sel = "#connected-ip";
+        var _log_ip_sel_2  = "#connected-ip-2";
+		var ip_labels = [];
+        var my_Chart = "#myChart";
+                          
+                          
+		var malware_label = [];
+		var	_counter=1;
+		var temp2="";
+		var arrayCollection = {};
+		
+		var run = [];
+		var size = [];
+		var level = [];
+		var leveltemp;
+		$.ajax({
+
+					type     : "GET",
+					dataType : "json",
+					url      : "LogData.TXT",
+					success  :  function(data){
+
+						try {
+							
+							console.log(data);
+
+							$.each(data, function(index, value){
+								var array_ip = value.Ip;
+								
+								ip_labels.push(array_ip);
+								var log = value.Logs;
+								var app=value.Applications;
+								var temp="";
+								var ip=value.Ip;
+								var malware_count = value.Malwares.length;
+								$.each(app, function(i, v){
+									run.push(v.RunningTime);
+									size.push(v.Size);
+									if(v.ThreatLevel=="0"){
+										leveltemp= 25
+									}else if(v.ThreatLevel=="1"){
+										leveltemp= 50;
+									}else if(v.ThreatLevel=="2"){
+										leveltemp= 75;
+									}else{
+										leveltemp= 100;
+									}
+									level.push(leveltemp);
+								});
+								console.log("TIMEEEEEEE: ",run);
+								console.log("SIZEEEEEEE: ",size);
+								console.log("LEVELLLLLL: ",level);
+								$(_host_list_sel).append("<tr data-host-item data-ip='" + ip + "'><td>"+"Host - "+(index+1) +"</td><td>" + ip + "</td><td>" + malware_count +" Detected Malware(s)" + "</td><td>" + size[index]+"kb" + "</td><td class='data-bar' style='width:300px'><div data-host-bar class='jquery-ui-like' ><div  style='background-image: skins/jquery-ui-like/pbar-ani.gif'></div></div></td></tr>");
+						
+						
+								//----------------- %Bar --------------------------------  */	  	
+								function progressBar(percent, $element) {
+									var progressBarWidth = percent * $("tr[data-host-item][data-ip='" + ip + "']").find("td.data-bar").width() / 100;
+									console.error("BAR : ", $element.width());
+									$element.find('div').animate({ width: progressBarWidth }, 500).html(percent + "%&nbsp;");
+									}
+								var $data_host_bar =$("tr[data-host-item][data-ip='" + ip + "']").find("td.data-bar").children("div");
+								console.log("WİDTH", $data_host_bar.width());
+								progressBar(leveltemp, $data_host_bar);	
+
+								//-----------------------------------------------------------------------------------				
+
+							
+								malware_label.push(malware_count);
+								$.each(log, function(index2, value){
+								var network_arr=[];
+								
+								var connectedIP= value.ConnectedIps;
+									
+										
+									var entity = value.Entity.split('\\');
+									var array_id = value.Id;
+									arrayCollection[array_id] = [];
+									$.each(entity, function(i, v){
+										
+										if(i==0){
+											var a=  { "id" : "ajson"+_counter, "parent" : "#" , "state":{"opened":"true"} , "text" : v };
+										}else{
+											var a=  { "id" : "ajson"+_counter, "parent" : temp2,"state":{"opened":"true"}, "text" : v };
+										}
+										temp2="ajson"+_counter;
+										arrayCollection[array_id].push(a);
+										console.log("ARRAY",arrayCollection);
+										_counter++;
+									});	
+									
+									
+									
+									console.log(value);
+									
+					//----------------------------------IP Print -----------------------------------------------------------------------------------------//					
+									$(_log_list_sel).append("<tr data-log-item data-ip='" + value.Ip + "' data-id='" + value.Id + "'><td>"+"Log - " +(index2+1)+"</td><td>" +value.EntityType+"</td></tr>");
+								$("tr[data-log-item]").hide();
+					//----------------------------------Tree Print -----------------------------------------------------------------------------------------//				
+                                       var __id = value.Id;
+                                       $("tr[data-ip-item]").hide();
+                                       $("tr[data-ip-item-2]").hide();
+                                       $("tr[data-chart-item]").hide();
+                                if(value.EntityType=="Registry Key"){
+									$(_tree_list_sel).append("<tr data-tree-item data-id='" + value.Id + "'><td><div data-tree data-tree-id='" + value.Id + "' ></div></td></tr>");
+									$("tr[data-tree-item]").hide();					
+									$(_log_app_sel_2).append("<tr data-app-item style='display:none' data-id='" + value.Id + "'><td>" + value.Application+"</td><td>" + value.RunningTime+" ms"+"</td><td>" + value.MaliciousActivityName+"</td><td>" + value.Operation+"</td><td>" + new Date(value.Time)+"</td><td>" + value.Outgoing+"</td></tr>");
+                                    var temp_ip_labels = [];
+                                    $.each(connectedIP, function(index2, value){
+                                              
+                                           var ip_arr=value.ip;
+                                           var data_arr=[];
+                                           temp_ip_labels.push(ip_arr);
+                                           ip_labels=temp_ip_labels;
+                                           console.log("CONNECTED_IP",temp_ip_labels);
+                                           console.log("CONNECTED_IP",value.data);
+												if(value.data!=null){	
+												 for(var i=0;i<5;i++){
+												  data_arr.push(value.data[i]);
+												  
+												  }
+                                                  }
+                                                  
+                                                $(_log_ip_sel).append("<tr data-ip-item data-id='" + __id + "' data-ip='" + value.ip + "' data-arr='" + data_arr + "'><td>"+ ip_arr +"</td></tr>");
+                                           
+                                                $(my_Chart).append("<tr data-chart-item data-ip='" + value.ip + "'><div data-chart data-chart-ip='" + value.ip + "' ></div></tr>");
+                                           
+                                              });
+									
+									// Burada for each olabilir denemen lazım...
+									//$(_chart_list_sel).append("<tr data-chart-item data-ip='" + value.Ip + "'><td><div data-chart data-chart-id='" + value.Id + "' ></div></td></tr>");
+
+								}else{	
+									$(_tree_list_sel_2).append("<tr data-tree-item-2 data-id='" + value.Id + "'><td><div data-tree data-tree-id='" + value.Id + "' ></div></td></tr>");
+									$("tr[data-tree-item-2]").hide();					
+									$(_log_app_sel).append("<tr data-app-item-2 style='display:none' data-id='" + value.Id + "'><td>" + value.Application+"</td><td>" + value.RunningTime+" ms"+"</td><td>" + value.MaliciousActivityName+"</td><td>" + value.Operation+"</td><td>" + new Date(value.Time)+"</td><td>" + value.Outgoing+"</td></tr>");
+                                       $.each(connectedIP, function(index2, value){
+                                              
+                                              var ip_arr=value.ip;
+                                              console.log("CONNECTED_IP",ip_arr);
+                                              $(_log_ip_sel_2).append("<tr data-ip-item-2 data-id='" + __id + "'><td>"+ ip_arr +"</td></tr>");
+                                              });
+								}
+								
+								});	
+								
+							});						
+						} catch (e) {
+							console.log(e.message);
+						}	
+
+						
+				
+	
+					}
+				});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//		
+		$(document).on("click", "[data-host-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-ip');
+					$("tr[data-log-item]").hide();
+					$("tr[data-log-item][data-ip='" + ip + "']").show();
+					$("tr[data-app-item]").hide();
+					$("tr[data-app-item-2]").hide();
+					$("tr[data-tree-item-2]").hide();
+					$("tr[data-tree-item]").hide();
+		
+		});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+		$(document).on("click", "[data-log-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-id');
+					var id = $(this).attr('data-id');
+					console.log("ID DEGER: ",id);
+					console.log("ARRAY: ",arrayCollection);
+					$("tr[data-tree-item-2]").hide();
+					$("tr[data-app-item-2]").hide();
+                    $("tr[data-ip-item-2]").hide();
+					$("tr[data-app-item-2][data-id='" + id + "']").show();
+					$("tr[data-tree-item-2][data-id='" + id + "']").show();
+                    $("tr[data-ip-item-2][data-id='" + id + "']").show();
+                    $
+
+					//$("tr[data-app-item]").hide();
+					$('[data-tree-id="' + id + '"]').jstree({
+                          'core': {
+                                'data': arrayCollection[id]
+                            }
+                        });
+			
+		
+		});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+
+		$(document).on("click", "[data-log-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-id');
+					var id = $(this).attr('data-id');
+					console.log("ID DEGER: ",id);
+					console.log("ARRAY: ",arrayCollection);
+					$("tr[data-tree-item]").hide();
+					$("tr[data-app-item]").hide();
+                        $("tr[data-ip-item]").hide();
+					$("tr[data-app-item][data-id='" + id + "']").show();
+					$("tr[data-tree-item][data-id='" + id + "']").show();
+                      
+                       $("tr[data-ip-item][data-id='" + id + "']").show();
+					
+					//$("tr[data-app-item-2]").hide();
+					$('[data-tree-id="' + id + '"]').jstree({
+                          'core': {
+                                'data': arrayCollection[id]
+                            }
+							
+                        });
+			
+		
+		});
+
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+
+				$(document).on("click", "[data-tree-item]", function(e){
+					e.preventDefault();
+					var id = $(this).attr('data-id');
+					
+		
+		});
+		
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//		
+				$(document).on("click", "[data-tree-item-2]", function(e){
+					e.preventDefault();
+					var id = $(this).attr('data-id');
+					
+		
+		});
+                  
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+                          
+                $(document).on("click", "[data-ip-item]", function(e){
+                            e.preventDefault();
+							var arr=[];
+                            arr=$(this).attr('data-arr');
+							console.log("ARRRRRRRRRRRRRR__------",arr);
+							 $('html,body').scrollTop(0);
+							document.getElementById("myChart").style.visibility = "visible";
+                            var ctx = document.getElementById('myChart').getContext('2d');
+							   var data = {
+                labels: [2,4,6,8,10],
+                datasets: [
+                {
+                label: "Detected Malware(s)",
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+            borderWidth: 1,
+			width: 500,
+			height: 200,
+            data: [32,122,5,7,90],
+                }
+                ]
+                };
+           
+			
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: Chart.defaults.line
+            });
+                                         
+                                         
+                });
+
+                          
+		
+		
+		
+		
+					
+
+			
+		});
+		
+		
+		
+		function progressBar(percent, $element) {
+                    $('div').append('<link rel="stylesheet" type="text/css" href="skins/jquery-ui-like/progressbar.css">');
+					var progressBarWidth = percent * $element.width() / 100;
+					$element.find('div').animate({ width: progressBarWidth }, 500).html(percent + "%&nbsp;");
+								}
+		progressBar(75, $("[data-host-bar]"));
+		</script>
+		
+<!---------------- Tree Files------------------------->		
+		 <div id="jstree"></div>
+
+	</body>
+</html>

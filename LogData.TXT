@@ -1,0 +1,284 @@
+[
+  {
+    "Malwares": [
+      "Not Labeled-1-183-5498",
+      "Trojan-Downloader-JS-Agent-1-147-5385"
+    ],
+    "Applications": [
+      {
+        "ApplicationName": "kkmalware1.exe",
+        "Malwares": [
+          "Not Labeled-1-183-5498",
+          "Trojan-Downloader-JS-Agent-1-147-5385"
+        ],
+        "Size": "637.2",
+        "ThreatLevel": "0"
+      }
+    ],
+    "Ip": "192.168.7.4",
+    "Logs": [
+      {
+        "EntityType": "File System",
+        "Entity": "\\Users\\Documents\\GT_ARCFiles\\project\\html\\html\\LogData.TXT",
+        "Ip": "192.168.7.4",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "MaliciousActivity-4",
+        "Operation": "System Resource Read",
+        "Id": 10123,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 1,
+        "RunningTime": "10897.8",
+        "ConnectedIps": [
+          {"ip": "172.168.19.22","data":[43,343,61,67,8]},
+          {"ip":"192.168.0.7", "data": [321,23,54,65,78]}
+        ]
+      },
+      {
+        "EntityType": "File System",
+        "Entity": "\\Registry\\Machine\\Software\\Policies\\Microsoft\\Windows\\Safer\\CodeIdentifiers\\131072\\Hashes",
+        "Ip": "192.168.7.4",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "MaliciousActivity-8",
+        "Operation": "System Resource Read",
+        "Id": 10384,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 1,
+        "RunningTime": "10897.8",
+        "ConnectedIps": [
+          {"ip": "172.168.19.22", "data": [980,32,1242,34,5]},
+          {"ip":"192.168.0.7", "id":[332,12,86,7,65]}
+        ]
+      },
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\Users\\macpro\\Desktop\\html",
+        "Ip": "192.168.7.4",
+        "Time": 1482167408571,
+        "MaliciousActivityName": [
+          "MaliciousActivity-1",
+          "MaliciousActivity-2"
+        ],
+        "Operation": "System Resource Read",
+        "Id": 10715,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 1,
+        "RunningTime": "10897.8",
+        "ConnectedIps": [
+          {"ip":"172.168.19.22", "data": [32,122,5,7,90]},
+          {"ip": "192.168.0.7", "data" : [2,343,2,53,73]}
+        ]
+      }
+    ]
+  },
+  {
+    "Malwares": [
+      "Not Labeled-1-183-5498",
+      "Trojan-Downloader-JS-Agent-1-147-5385"
+    ],
+    "Applications": [
+      {
+        "ApplicationName": "kkmalware1.exe",
+        "Malwares": [
+          "Not Labeled-1-183-5498",
+          "Trojan-Downloader-JS-Agent-1-147-5385"
+        ],
+        "Size": "837.1",
+        "ThreatLevel": "3"
+      }
+    ],
+    "Ip": "10.0.6.1",
+    "Logs": [
+      {
+        "EntityType": "File System",
+        "Entity": "\\Users\\Documents\\GT_ARCFiles\\project\\html\\html\\LogData.TXT",
+        "Ip": "10.0.6.1",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "MaliciousActivity-3",
+        "Operation": "System Resource Write",
+        "Id": 10385,
+        "Application": [
+          "kkmalware1.exe",
+          "virus.exe"
+        ],
+        "Outgoing": 1,
+        "RunningTime": "19837.8",
+        "ConnectedIps": [{
+          "ip":"172.168.19.22","data":[323,54,14,23,34]},
+          {"ip":"192.168.0.7" ,"data": [761,45,74,3,5]}
+        ]
+      },
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\InprocHandlerX86",
+        "Ip": "10.0.6.1",
+        "Time": 1482167408571,
+        "MaliciousActivityName": "MaliciousActivity-5",
+        "Operation": "System Resource Write",
+        "Id": 10711,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 1,
+        "RunningTime": "1037.8",
+        "ConnectedIps": [{
+          "172.168.19.22": [322,54,13,2,34]},
+          {"192.168.0.7" : [76,435,754,390,50]}
+        ]
+      }
+    ]
+  },
+  {
+    "Malwares": [
+      "Not Labeled-1-183-5498",
+      "Trojan-Downloader-JS-Agent-1-147-5385"
+    ],
+    "Applications": [
+      {
+        "ApplicationName": "kkmalware1.exe",
+        "Malwares": [
+          "Not Labeled-1-183-5498",
+          "Trojan-Downloader-JS-Agent-1-147-5385"
+        ],
+        "Size": "137.0",
+        "ThreatLevel": "2"
+      }
+    ],
+    "Ip": "224.0.0.251",
+    "Logs": [
+      {
+        "EntityType": "File System",
+        "Entity": "\\Users\\angular2-quickstart\\node_modules\\rx\\src\\core\\internal",
+        "Ip": "224.0.0.251",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "MaliciousActivity-6",
+        "Operation": "System Resource Read",
+        "Id": 10383,
+        "Application": [
+          "kkmalware1.exe",
+          "virus.exe"
+        ],
+        "Outgoing": 1,
+        "RunningTime": "10897.8",
+        "ConnectedIps": [{
+          "ip":"172.168.19.22","data": [32,54,1,2,34]},
+          {"ip":"192.168.0.7" ,"data": [76,45,74,3,5]}
+        ]
+      },
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\InprocHandlerX86",
+        "Ip": "224.0.0.251",
+        "Time": 1482167408571,
+        "MaliciousActivityName": "Not Labeled-1-183-5498",
+        "Operation": "System Resource Read",
+        "Id": 10712,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 1,
+        "RunningTime": "337.0",
+        "ConnectedIps": [{
+          "ip":"172.14.19.224", "data": [32,54,1,2,34]},
+          {"ip": "192.168.54.32" ,"data": [0,0,74,90,15]}
+        ]
+      }
+    ]
+  },
+  {
+    "Malwares": [
+      "Not Labeled-1-183-5498",
+      "Trojan-Downloader-JS-Agent-1-147-5385"
+    ],
+    "Applications": [
+      {
+        "ApplicationName": "kkmalware1.exe",
+        "Malwares": [
+          "Not Labeled-1-183-5498",
+          "Trojan-Downloader-JS-Agent-1-147-5385"
+        ],
+        "Size": "437.2",
+        "ThreatLevel": "1"
+      }
+    ],
+    "Ip": "239.255.255.250",
+    "Logs": [
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\C:\\Users\\bahdr\\Desktop\\html2",
+        "Ip": "239.255.255.250",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "Not Labeled-1-183-5498",
+        "Operation": "System Resource Read",
+        "Id": 10386,
+        "Application": [
+          "kkmalware1.exe",
+          "virus.exe"
+        ],
+        "Outgoing": 0,
+        "RunningTime": "134000.8",
+        "ConnectedIps": []
+      },
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\InprocHandlerX86",
+        "Ip": "239.255.255.250",
+        "Time": 1482167408571,
+        "MaliciousActivityName": "Not Labeled-1-183-5498",
+        "Operation": "System Resource Read",
+        "Id": 10713,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 0,
+        "RunningTime": "2409.8",
+        "ConnectedIps": []
+      }
+    ]
+  },
+  {
+    "Malwares": [
+      "Not Labeled-1-183-5498",
+      "Trojan-Downloader-JS-Agent-1-147-5385"
+    ],
+    "Applications": [
+      {
+        "ApplicationName": "kkmalware1.exe",
+        "Malwares": [
+          "Not Labeled-1-183-5498",
+          "Trojan-Downloader-JS-Agent-1-147-5385"
+        ],
+        "AppSize": "63907.1",
+        "ThreatLevel": "3"
+      }
+    ],
+    "Ip": "10.0.6.159",
+    "Logs": [
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\C:\\Users\\bahdr\\Desktop\\html2",
+        "Ip": "10.0.6.159",
+        "Time": 1482167408569,
+        "MaliciousActivityName": "Not Labeled-1-183-5498",
+        "Operation": "System Resource Write",
+        "Id": 10389,
+        "Application": [
+          "kkmalware1.exe",
+          "virus.exe"
+        ],
+        "Outgoing": 1,
+        "RunningTime": "93307.1",
+        "ConnectedIps": [{
+          "ip":"172.156.16.4" ,"data": [32,54,1,2,340]},
+          {"ip":"192.168.2.1" ,"data": [6,0,74,3,5]}
+        ]
+      },
+      {
+        "EntityType": "Registry Key",
+        "Entity": "\\InprocHandlerX86",
+        "Ip": "10.0.6.159",
+        "Time": 1482167408571,
+        "MaliciousActivityName": "Not Labeled-1-183-5498",
+        "Operation": "System Resource Write",
+        "Id": 10725,
+        "Application": "kkmalware1.exe",
+        "Outgoing": 0,
+        "RunningTime": "83307.1",
+        "ConnectedIps": []
+      }
+    ]
+  }
+]

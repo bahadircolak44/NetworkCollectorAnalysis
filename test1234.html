@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="dist/css/side-bar.css" />
+		<link rel="stylesheet" href="dist/themes/default/style.css" />
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="loganalysis.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script src="dist/jstree.js"></script>	
+		
+	</head>
+	<body style="background-color: #00435C;" >
+		
+		<table class="table " style="">
+				<thead>
+				<tr >			
+					
+				<!-----      1    -------->		
+					<td >
+					<!-----      a   -------->		
+						<td>
+						<table class="table table-hover table-fixed">
+							
+							<div class="panel panel-default la-container-panel">
+								<div class="panel-heading">IP List </div>
+							</div>
+								<tr>
+									<th class="col-xs-3">Number</th>
+									<th class="col-xs-3">IP</th>
+								</tr>
+						<tbody id="hostlist"style="color:black"></tbody>
+						</table>
+						</td>
+					<!-----      b   -------->		
+						<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading"> LOGS </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">Logs Number</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Entity Type</span></th>
+								</tr>
+
+						<tbody id="logslist" style="color:black"></tbody>
+						</table>
+						</td>
+					</td>
+					<td ></td>
+					<td ></td>
+				<!-----      2    -------->	
+					<td>
+					
+					<!-----      a   -------->	
+						<td class="col-xs-1">
+							<table class="table table-hover table-fixed">
+								<div class="panel panel-default la-container-panel" style="height: 65%">
+									<div class="panel-heading">  Files System </div>
+								</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">Path</span></th>
+
+								</tr>
+
+						<tbody id="treelist2" style="color:black"></tbody>
+						</table>
+						</td>
+					<!-----      b   -------->		
+						<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading">Application Table </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">App Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">MaliciousActivity Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Operation</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Time</span></th>
+								</tr>
+							<tbody id="applist" style="color:black"></tbody>
+							</table>
+						</td>
+					</td>
+				<!-----      3    -------->		
+					<td>
+					
+					<!-----      a   -------->	
+						<td class="col-xs-1">
+							<table class="table table-hover table-fixed">
+								<div class="panel panel-default la-container-panel" style="height: 65%">
+									<div class="panel-heading">  Registry System </div>
+								</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">Path</span></th>
+
+								</tr>
+
+							<tbody id="treelist" style="color:black"></tbody>
+							</table>
+						</td>
+					<!-----      b   -------->	
+				
+					<td class="col-xs-1">
+						<table class="table table-hover table-fixed">
+							<div class="panel panel-default la-container-panel" style="height: 65%">
+								<div class="panel-heading">Application Table </div>
+							</div>
+								<tr>
+									
+									<th class="col-xs-3"><span class="clickable_space">App Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">MaliciousActivity Name</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Operation</span></th>
+									<th class="col-xs-3"><span class="clickable_space">Time</span></th>
+								</tr>
+						<tbody id="applist2" style="color:black"></tbody>
+						</table>
+						</td>
+						</td>
+					</tr>		
+				</thead>	
+				
+				
+			</table>
+		
+		
+		<script>
+		
+		$(document).ready(function(){
+		var _host_list_sel = "#hostlist";
+		var _tree_list_sel = "#treelist";
+		var _tree_list_sel_2 = "#treelist2";
+		var _log_list_sel  = "#logslist";
+		var _log_app_sel  = "#applist";
+		var _log_app_sel_2  = "#applist2";
+		var ip_labels = [];
+		var malware_label = [];
+		var	_counter=1;
+		var temp2="";
+		var arrayCollection = {};
+		$.ajax({
+
+					type     : "GET",
+					dataType : "json",
+					url      : "LogData.TXT",
+					success  :  function(data){
+
+						try {
+							
+							console.log(data);
+
+							$.each(data, function(index, value){
+								var array_ip = value.Ip;
+								ip_labels.push(array_ip);
+								var log = value.Logs;
+								var temp="";
+								var ip=value.Ip;
+								var malware_count = value.Malwares.length;
+								$(_host_list_sel).append("<tr data-host-item data-ip='" + ip + "'><td>"+(index+1)+"-" +"</td><td>" + ip + "</td></tr>");
+						
+								malware_label.push(malware_count);
+								$.each(log, function(index2, value){
+									
+									var entity = value.Entity.split('\\');
+									var array_id = value.Id;
+									arrayCollection[array_id] = [];
+									$.each(entity, function(i, v){
+										
+										if(i==0){
+											var a=  { "id" : "ajson"+_counter, "parent" : "#" , "state":{"opened":"true"} , "text" : v };
+										}else{
+											var a=  { "id" : "ajson"+_counter, "parent" : temp2,"state":{"opened":"true"}, "text" : v };
+										}
+										temp2="ajson"+_counter;
+										arrayCollection[array_id].push(a);
+										console.log("ARRAY",arrayCollection);
+										_counter++;
+									});	
+									
+									
+									
+									console.log(value);
+									
+					//----------------------------------IP Print -----------------------------------------------------------------------------------------//					
+									$(_log_list_sel).append("<tr data-log-item data-ip='" + value.Ip + "' data-id='" + value.Id + "'><td>"+"Log - " +(index2+1)+"</td><td>" +value.EntityType+"</td></tr>");
+								$("tr[data-log-item]").hide();
+					//----------------------------------Tree Print -----------------------------------------------------------------------------------------//				
+								if(value.EntityType=="Registry Key"){
+									$(_tree_list_sel).append("<tr data-tree-item data-id='" + value.Id + "'><td><div data-tree data-tree-id='" + value.Id + "' ></div></td></tr>");
+									$("tr[data-tree-item]").hide();					
+									$(_log_app_sel_2).append("<tr data-app-item style='display:none' data-id='" + value.Id + "'><td>" + value.Application+"</td><td>" + value.MaliciousActivityName+"</td><td>" + value.Operation+"</td><td>" + new Date(value.Time)+"</td></tr>");
+								}else{	
+									$(_tree_list_sel_2).append("<tr data-tree-item-2 data-id='" + value.Id + "'><td><div data-tree data-tree-id='" + value.Id + "' ></div></td></tr>");
+									$("tr[data-tree-item-2]").hide();					
+									$(_log_app_sel).append("<tr data-app-item-2 style='display:none' data-id='" + value.Id + "'><td>" + value.Application+"</td><td>" + value.MaliciousActivityName+"</td><td>" + value.Operation+"</td><td>" + new Date(value.Time)+"</td></tr>");
+								}
+								
+								});	
+								
+							});						
+						} catch (e) {
+							console.log(e.message);
+						}	
+
+						
+				
+	
+					}
+				});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//		
+		$(document).on("click", "[data-host-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-ip');
+					$("tr[data-log-item]").hide();
+					$("tr[data-log-item][data-ip='" + ip + "']").show();
+					$("tr[data-app-item]").hide();
+					$("tr[data-app-item-2]").hide();
+					$("tr[data-tree-item-2]").hide();
+					$("tr[data-tree-item]").hide();
+		
+		});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+		$(document).on("click", "[data-log-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-id');
+					var id = $(this).attr('data-id');
+					console.log("ID DEGER: ",id);
+					console.log("ARRAY: ",arrayCollection);
+					//$("tr[data-tree-item-2]").hide();
+					$("tr[data-tree-item-2][data-id='" + id + "']").show();
+					
+					//$("tr[data-app-item]").hide();
+					$('[data-tree-id="' + id + '"]').jstree({
+                          'core': {
+                                'data': arrayCollection[id]
+                            }
+                        });
+			
+		
+		});
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+
+		$(document).on("click", "[data-log-item]", function(e){
+					e.preventDefault();
+					var ip = $(this).attr('data-id');
+					var id = $(this).attr('data-id');
+					console.log("ID DEGER: ",id);
+					console.log("ARRAY: ",arrayCollection);
+					//$("tr[data-tree-item]").hide();
+					$("tr[data-tree-item][data-id='" + id + "']").show();
+					
+					//$("tr[data-app-item-2]").hide();
+					$('[data-tree-id="' + id + '"]').jstree({
+                          'core': {
+                                'data': arrayCollection[id]
+                            }
+							
+                        });
+			
+		
+		});
+
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//
+
+				$(document).on("click", "[data-tree-item]", function(e){
+					e.preventDefault();
+					var id = $(this).attr('data-id');
+					$("tr[data-app-item]").hide();
+					$("tr[data-app-item][data-id='" + id + "']").show();
+		
+		});
+		
+//-----------------------------------------Click-1----------------------------------------------------------------------------------//		
+				$(document).on("click", "[data-tree-item-2]", function(e){
+					e.preventDefault();
+					var id = $(this).attr('data-id');
+					$("tr[data-app-item-2]").hide();
+					$("tr[data-app-item-2][data-id='" + id + "']").show();
+		
+		});
+		
+		
+		
+		
+		
+		
+		
+				var data = {
+                labels: ip_labels,
+                datasets: [
+                {
+                label: "Detected Malware(s)",
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+            borderWidth: 1,
+			width: 500,
+			height: 200,
+            data: malware_label,
+                }
+                ]
+                };
+            var ctx = document.getElementById('myChart').getContext('2d');
+			var ctx2 = document.getElementById('myChart2').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: Chart.defaults.bar
+            });	
+
+			var myChart2 = new Chart(ctx2 ,{
+                type: 'bar',
+                data: data,
+                options: Chart.defaults.bar
+            });	
+		});
+		</script>
+		
+		
+	</body>	
+</html>
